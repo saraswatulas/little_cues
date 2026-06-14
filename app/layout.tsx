@@ -1,9 +1,19 @@
 import type { Metadata, Viewport } from "next";
+import { PwaRegister } from "./pwa-register";
 import "./styles.css";
 
 export const metadata: Metadata = {
   title: "Little Cues",
-  description: "Age-calculated infant development and health tracking for parents."
+  description: "Age-calculated infant development and health tracking for parents.",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: "Little Cues"
+  },
+  icons: {
+    icon: "/icon.svg",
+    apple: "/icon.svg"
+  }
 };
 
 export const viewport: Viewport = {
@@ -15,7 +25,10 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <PwaRegister />
+        {children}
+      </body>
     </html>
   );
 }
